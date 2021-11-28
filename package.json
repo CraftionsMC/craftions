@@ -1,6 +1,6 @@
 {
   "name": "craftions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI Tool for creating a Craftions App",
   "main": "src/cli.js",
   "bin": "src/cli.js",
