@@ -1,8 +1,9 @@
 {
-  "name": "create-craftions-app",
+  "name": "craftions",
   "version": "1.0.0",
   "description": "CLI Tool for creating a Craftions App",
   "main": "src/cli.js",
+  "bin": "src/cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,7 +21,7 @@
   },
   "homepage": "https://github.com/CraftionsMC/create-craftions-app#readme",
   "dependencies": {
-    "chalk": "^5.0.0",
+    "chalk": "^4.0.0",
     "commander": "^8.3.0",
     "simple-git": "^2.47.0"
   }
