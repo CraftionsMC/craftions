@@ -1,0 +1,22 @@
+{
+  "name": "create-craftions-app",
+  "version": "1.0.0",
+  "description": "CLI Tool for creating a Craftions App",
+  "main": "src/cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CraftionsMC/create-craftions-app.git"
+  },
+  "keywords": [
+    "Craftions"
+  ],
+  "author": "Ben Siebert",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/CraftionsMC/create-craftions-app/issues"
+  },
+  "homepage": "https://github.com/CraftionsMC/create-craftions-app#readme"
+}
