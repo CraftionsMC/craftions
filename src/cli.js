@@ -21,8 +21,7 @@ program.version(version);
 
 program
     .command("create <name>")
-    .option("-o, --frontend-only")
-    .option("-n, --no-install")
+    .option("-n, --no-install", "Don't install the dependencies")
     .description("Create a new Craftions App")
     .action((name, options, command) => {
         if (fs.existsSync(name)) {
@@ -33,10 +32,6 @@ program
         console.log(`Creating new Craftions App in ${name}...`);
 
         let remotePath = "https://github.com/CraftionsMC/craftions-base";
-
-        if (options.frontendOnly) {
-            remotePath = "https://github.com/CraftionsMC/craftions-base-frontend-only"
-        }
 
         console.log(chalk.yellow(`Cloning from template ${remotePath}...`));
 
@@ -68,11 +63,30 @@ program
             console.log(chalk.cyan("Happy Coding!"));
             console.log("\n")
 
-            console.log(chalk.green("You can start your app using ") + chalk.yellow("craftions run test"))
+            console.log(chalk.green("You can start your app using ") + chalk.yellow("craftions run " + name))
             console.log(chalk.green("For additional functionality run ") + chalk.yellow("craftions --help"))
 
             console.log("\n");
 
+        })
+    })
+
+program
+    .command("run <name>")
+    .option("-s, --script <script_name>", "Specify a custom npm script that will be executed", "express:live-start")
+    .description("Run a Craftions App")
+    .action((name, options, command) => {
+        if (!fs.existsSync(name)) {
+            console.log(chalk.red(`The app ${name} could not be found!`));
+            process.exit(1)
+        }
+
+        const task = options.script;
+
+        console.log(chalk.green(`Starting the app ${name} on http://localhost:3000...`))
+        execSync(`npm run ${task}`, {
+            stdio: "inherit",
+            cwd: name
         })
     })
 
