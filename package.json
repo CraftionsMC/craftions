@@ -4,8 +4,11 @@
   "description": "CLI Tool for creating a Craftions App",
   "main": "src/cli.js",
   "bin": "src/cli.js",
+  "publishConfig": {
+    "private": true
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "npm publish --registry https://npm.craftions.net"
   },
   "repository": {
     "type": "git",

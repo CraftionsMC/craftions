@@ -125,4 +125,36 @@ program
         }
     })
 
+program
+    .command("deploy-npm <name>")
+    .description("Deploy to NPM")
+    .action((name) => {
+        if (!fs.existsSync(name)) {
+            console.log(chalk.red(`The app ${name} could not be found!`));
+            process.exit(1)
+        }
+        console.log(chalk.green(`Uploading to NPM...`))
+        execSync(`npm run npm:deploy`, {
+            stdio: "inherit",
+            cwd: name
+        })
+    })
+
+
+program
+    .command("deploy-docker <name>")
+    .description("Deploy to Docker Hub")
+    .action((name) => {
+        if (!fs.existsSync(name)) {
+            console.log(chalk.red(`The app ${name} could not be found!`));
+            process.exit(1)
+        }
+        console.log(chalk.green(`Uploading to Docker...`))
+        execSync(`npm run docker:deploy`, {
+            stdio: "inherit",
+            cwd: name
+        })
+    })
+
+
 program.parse(process.argv);
