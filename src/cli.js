@@ -14,6 +14,7 @@ const simpleGit = require('simple-git');
 const git = simpleGit();
 const {patch} = require('./lib/patchApp');
 const {checkYarn} = require("./lib/checkYarn");
+const {NOOP} = require("simple-git/src/lib/utils");
 
 const version = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "package.json")).toString()).version
 
@@ -74,6 +75,7 @@ program
 program
     .command("run <name>")
     .option("-s, --script <script_name>", "Specify a custom npm script that will be executed", "express:live-start")
+    .option("-d, --docker", "Build and run a Docker Container with your Craftions App.", false)
     .description("Run a Craftions App")
     .action((name, options, command) => {
         if (!fs.existsSync(name)) {
@@ -81,13 +83,46 @@ program
             process.exit(1)
         }
 
-        const task = options.script;
+        if(!options.docker){
+            const task = options.script;
 
-        console.log(chalk.green(`Starting the app ${name} on http://localhost:3000...`))
-        execSync(`npm run ${task}`, {
+            console.log(chalk.green(`Starting the app ${name} on http://localhost:3000...`))
+            execSync(`npm run ${task}`, {
+                stdio: "inherit",
+                cwd: name
+            })
+        }else {
+            console.log(chalk.green(`Building Docker Container... It will run on http://localhost:8080`))
+            execSync(`npm run docker:build && npm run docker:run`, {
+                stdio: "inherit",
+                cwd: name
+            })
+        }
+
+    })
+
+program
+    .command("build <name>")
+    .description("Build a Docker Container with your Craftions App")
+    .option("-r, --run", "Run the built container.")
+    .action((name, options, command) => {
+        if (!fs.existsSync(name)) {
+            console.log(chalk.red(`The app ${name} could not be found!`));
+            process.exit(1)
+        }
+        console.log(chalk.green(`Building Docker Container...`))
+        execSync(`npm run docker:build`, {
             stdio: "inherit",
             cwd: name
         })
+
+        if(options.run){
+            console.log(chalk.green(`Running your docker container on http://localhost:8080...`))
+            execSync(`npm run docker:run`, {
+                stdio: "inherit",
+                cwd: name
+            })
+        }
     })
 
 program.parse(process.argv);
