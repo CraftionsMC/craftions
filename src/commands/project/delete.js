@@ -16,7 +16,7 @@ module.exports = (projectCommand) => {
         .action((options) => {
 
             if(!options.name) {
-                options.name = rl.question("Enter the name of the project: ");
+                options.name = rl.question(chalk.cyan("Enter the name of the project: "));
             }
 
             const confirm = rl.keyIn("Are you sure you want to delete this project? (y/n) ", {limit: 'ynYNjnJN'});
