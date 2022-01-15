@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "CLI Tool for creating and maintaining Craftions Apps",
   "main": "src/index.js",
+  "bin": "src/index.js",
   "publishConfig": {
     "access": "public",
     "private": false
