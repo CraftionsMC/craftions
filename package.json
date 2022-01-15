@@ -5,7 +5,7 @@
   "main": "src/cli.js",
   "bin": "src/cli.js",
   "publishConfig": {
-    "private": true
+    "private": false
   },
   "scripts": {
     "deploy": "npm publish --registry https://npm.craftions.net"
