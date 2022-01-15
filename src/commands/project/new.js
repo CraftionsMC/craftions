@@ -9,11 +9,11 @@ const fs = require("fs");
 const simpleGit = require('simple-git');
 const os = require('os');
 const path = require('path')
-const yarn = require('../lib/yarn')
+const yarn = require('../../lib/yarn')
 const childProcess = require('child_process');
 
-module.exports = (program) => {
-    program
+module.exports = (projectCommand) => {
+    projectCommand
         .command("new")
         .option("-n, --name <name>", "Name of the new project")
         .option("-d, --display <name>", "Display name of the new project")
@@ -112,5 +112,9 @@ module.exports = (program) => {
             }
 
             console.log("\n")
-        })
+        });
+
+    projectCommand
+        .command("test")
+        .action(() => {console.log("hello Wiorld")});
 }
