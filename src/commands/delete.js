@@ -3,13 +3,14 @@
  * @copyright (c) 2018-2021 Ben Siebert. All rights reserved.
  */
 
-const fs = require('fs');
-const path = require('path');
-const rl = require('readline-sync')
+const fs = require("fs");
+const path = require("path");
+const rl = require("readline-sync");
 const chalk = require("chalk");
 
-module.exports = (projectCommand) => {
-    projectCommand
+module.exports = (program) => {
+
+    program
         .command("delete")
         .option("-n, --name <name>", "The name of the project to delete")
         .description("Delete a project")

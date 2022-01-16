@@ -3,14 +3,15 @@
  * @copyright (c) 2018-2021 Ben Siebert. All rights reserved.
  */
 
-const fs = require('fs');
-const path = require('path');
-const rl = require('readline-sync')
+const fs = require("fs");
+const path = require("path");
+const rl = require("readline-sync");
 const chalk = require("chalk");
 const childProcess = require("child_process");
 
-module.exports = (projectCommand) => {
-    projectCommand
+module.exports = (program) => {
+
+    program
         .command("run")
         .option("-n, --name <name>", "The name of the project to run")
         .option("-s, --custom-script <script>", "The script to run", "express:live-start")

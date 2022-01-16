@@ -9,7 +9,7 @@ const path = require("path");
 module.exports = (program) => {
 
     const projectCommand = program
-        .command("create");
+        .command("create").alias("new");
 
     fs.readdirSync(path.join(__dirname, "create")).forEach(file => {
         if(file.endsWith(".js")) {

@@ -14,7 +14,7 @@ const childProcess = require('child_process');
 
 module.exports = (projectCommand) => {
     projectCommand
-        .command("new")
+        .command("project")
         .option("-n, --name <name>", "Name of the new project")
         .option("-d, --display <name>", "Display name of the new project")
         .option("-D, --description <description>", "Description of the new project")
@@ -113,8 +113,4 @@ module.exports = (projectCommand) => {
 
             console.log("\n")
         });
-
-    projectCommand
-        .command("test")
-        .action(() => {console.log("hello Wiorld")});
 }

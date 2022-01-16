@@ -12,10 +12,6 @@ const {program} = require('commander');
 const readline = require("readline");
 const packageData = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "package.json")).toString());
 
-console.log = (msg) => {
-    process.stdout.write(msg + "\n");
-};
-
 program.version(
     packageData.version
 )
@@ -31,3 +27,7 @@ fs.readdirSync(path.join(__dirname, "commands")).forEach(file => {
 });
 
 program.parse(process.argv);
+
+console.log = (msg) => {
+    process.stdout.write(msg + "\n");
+};
